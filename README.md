@@ -7,4 +7,4 @@ How do you want to use this plugin?
 - Use ```pm2 restart hydrooj``` to restart hydrooj.
 - Open your hydrooj select Configuration Management under Control Panel config API Key.
 Then a Cloudflare CAPTCHA challenge will be triggered when the user registers.
-#### powered by Bright
+#### Powered by Bright
