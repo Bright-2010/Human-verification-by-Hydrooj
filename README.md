@@ -8,3 +8,5 @@ How do you want to use this plugin?
 - Open your hydrooj select Configuration Management under Control Panel config API Key.
 Then a Cloudflare CAPTCHA challenge will be triggered when the user registers.
 #### Powered by Bright
+
+**中文文档见此链接**
