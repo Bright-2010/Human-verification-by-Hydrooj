@@ -9,4 +9,4 @@ How do you want to use this plugin?
 Then a Cloudflare CAPTCHA challenge will be triggered when the user registers.
 #### Powered by Bright
 
-**中文文档见此链接**
+**中文文档见[此链接](https://oj.brightweb.top/blog/2/69105b0463e01e62e3c11bdf)**
