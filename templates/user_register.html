@@ -1,0 +1,78 @@
+{% extends "layout/immersive.html" %}
+{% block content %}
+<div class="row">
+  <div class="columns">
+    <div class="immersive--content immersive--center">
+      <h1>{{ _('Sign Up') }}</h1>
+      <form method="POST" id="register-form">
+        <div class="row">
+          <div class="columns">
+            <label class="inverse material textbox">
+              {{ _('Email') }}
+              <input name="mail" type="email" autofocus required>
+            </label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="columns">
+            <div class="text-center">
+              <!-- Cloudflare Turnstile Widget -->
+              <div class="cf-turnstile"
+                   data-sitekey="{{ UiContext.turnstileSiteKey }}"
+                   data-theme="light"
+                   data-callback="onTurnstileSuccess"
+                   data-expired-callback="onTurnstileExpired"
+                   data-error-callback="onTurnstileError">
+              </div>
+
+              <input type="hidden" name="cf-turnstile-response" id="turnstile-token">
+
+              <input 
+                id="submit" 
+                type="submit" 
+                value="{{ _('Complete CAPTCHA to continue') }}" 
+                class="inverse expanded rounded primary button" 
+                disabled
+              >
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+<script>
+  // 初始文案（未验证时）
+  const BUTTON = document.getElementById('submit');
+  const DEFAULT_TEXT = "{{ _('发送验证邮件') }}";
+  const WAITING_TEXT = "{{ _('正在进行人机验证...') }}";
+
+  // 初始化按钮状态
+  BUTTON.value = WAITING_TEXT;
+  BUTTON.disabled = true;
+
+  // 全局回调：验证成功
+  window.onTurnstileSuccess = function(token) {
+    document.getElementById('turnstile-token').value = token;
+    BUTTON.value = DEFAULT_TEXT;
+    BUTTON.disabled = false;
+  };
+
+  // 验证过期或失效
+  window.onTurnstileExpired = function() {
+    document.getElementById('turnstile-token').value = '';
+    BUTTON.value = WAITING_TEXT;
+    BUTTON.disabled = true;
+  };
+
+  // 验证出错
+  window.onTurnstileError = function() {
+    document.getElementById('turnstile-token').value = '';
+    BUTTON.value = WAITING_TEXT;
+    BUTTON.disabled = true;
+  };
+</script>
+{% endblock %}

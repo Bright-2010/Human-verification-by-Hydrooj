@@ -1,0 +1,11 @@
+{  
+  "name": "@hydrooj/cloudflare-turnstile",  
+  "version": "1.0.0",  
+  "main": "index.ts",  
+  "description": "Cloudflare Turnstile CAPTCHA for HydroOJ registration",  
+  "author": "bright",  
+  "license": "MIT",  
+  "peerDependencies": {  
+    "hydrooj": "^5.0.0"  
+  }  
+}
